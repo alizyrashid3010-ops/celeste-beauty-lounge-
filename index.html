@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celeste Beauty Lounge — Hair · Skin · Nails</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+/* global image fallback — runs before body parses so it catches every load error */
+function fb(el){el.onerror=null;el.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=70';}
+</script>
+<style>
+/* ============ THEME ============ */
+:root{
+  --cream:#faf6ef; --cream2:#f4eee2; --lav:#b7a8d6; --lav-l:#efe9f7;
+  --ink:#2b2d55; --ink2:#3c3e6e; --plum:#7a68a3;
+  --camel:#c08b5c; --camel-d:#a9714b;
+  --gold:#c9a24b; --gold-l:#e6c878; --txt:#5c5670;
+  --shadow:0 14px 34px rgba(43,45,85,.10);
+  --shadow-lg:0 22px 48px rgba(43,45,85,.16);
+  --r:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--txt);line-height:1.75;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;color:var(--ink);line-height:1.25}
+img{display:block}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--gold);color:#fff}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--cream2)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:8px}
+
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+section{padding:100px 0}
+.script{font-family:'Great Vibes',cursive;color:var(--gold);font-size:clamp(1.7rem,3vw,2.1rem);line-height:1.2}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 56px}
+.sec-head h2{font-size:clamp(1.9rem,4vw,2.7rem);margin:2px 0 10px}
+.sec-head h2 em{font-style:italic;color:var(--gold)}
+.orn{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);font-size:.85rem;margin-top:4px}
+.orn .line{width:52px;height:1px;background:var(--gold);opacity:.6}
+.sec-sub{margin-top:14px;font-size:1.02rem}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 34px;border-radius:999px;
+  background:var(--gold);color:#fff;font-weight:600;letter-spacing:.06em;font-size:.95rem;
+  border:2px solid var(--gold);cursor:pointer;transition:.3s;font-family:'Jost',sans-serif}
+.btn:hover{background:var(--camel-d);border-color:var(--camel-d);transform:translateY(-3px);box-shadow:0 12px 26px rgba(169,113,75,.35)}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.75);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff;box-shadow:none}
+
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ NAVBAR ============ */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;padding:20px 0;transition:.35s}
+.nav.scrolled{background:rgba(250,246,239,.94);backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(43,45,85,.08);padding:12px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;flex-direction:column;line-height:1}
+.logo-main{font-family:'Playfair Display',serif;font-weight:800;font-size:1.45rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;transition:.3s}
+.logo-sub{font-family:'Great Vibes',cursive;color:var(--gold-l);font-size:1.05rem;margin:-2px 0 0 34px;transition:.3s}
+.nav.scrolled .logo-main{color:var(--ink)}
+.nav.scrolled .logo-sub{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:#f3eff9;position:relative;padding:4px 0;transition:.3s}
+.nav.scrolled .nav-links a{color:var(--ink)}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--gold);transition:.3s;border-radius:2px}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a:hover,.nav-links a.active{color:var(--gold-l)}
+.nav.scrolled .nav-links a:hover,.nav.scrolled .nav-links a.active{color:var(--gold)}
+.nav .btn{padding:10px 26px;font-size:.85rem}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px;color:#fff}
+.nav.scrolled .nav-toggle,.nav.open .nav-toggle{color:var(--ink)}
+.nav-toggle span{width:26px;height:2.5px;background:currentColor;border-radius:3px;transition:.3s}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100vh;display:grid;place-items:center;overflow:hidden;text-align:center;padding:120px 24px 80px}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;background:linear-gradient(135deg,#3c3e6e,#2b2d55)}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,36,74,.55),rgba(35,36,74,.45) 55%,rgba(43,45,85,.65));z-index:1}
+.hero::after{content:'';position:absolute;inset:auto 0 0 0;height:160px;background:linear-gradient(180deg,rgba(250,246,239,0),var(--cream));z-index:1}
+.hero-inner{position:relative;z-index:2;max-width:880px}
+.hero-script{font-family:'Great Vibes',cursive;color:var(--gold-l);font-size:clamp(1.8rem,4vw,2.5rem)}
+.hero-title{font-size:clamp(3rem,10vw,6.4rem);font-weight:800;letter-spacing:.14em;color:#fff;text-transform:uppercase;margin:2px 0 0;text-shadow:0 6px 30px rgba(0,0,0,.35)}
+.hero-sub{font-family:'Great Vibes',cursive;color:var(--gold);font-size:clamp(2rem,5.5vw,3.3rem);margin-top:-8px;text-shadow:0 4px 18px rgba(0,0,0,.3)}
+.hero-orn{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold-l);margin:22px 0}
+.hero-orn .line{width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-l))}
+.hero-orn .line:last-child{background:linear-gradient(90deg,var(--gold-l),transparent)}
+.hero-tag{color:#efeaf7;font-weight:300;font-size:clamp(1rem,2vw,1.15rem);max-width:580px;margin:0 auto 34px}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:var(--gold-l);animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,9px)}}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-media{position:relative;margin:0 18px 18px 0}
+.about-media::before{content:'';position:absolute;inset:0;border:2px solid var(--gold);border-radius:28px;transform:translate(18px,18px)}
+.about-main{width:100%;height:520px;object-fit:cover;border-radius:26px;position:relative;box-shadow:var(--shadow)}
+.about-mini{position:absolute;right:-26px;bottom:-24px;width:200px;height:200px;object-fit:cover;border-radius:22px;
+  border:6px solid #fff;box-shadow:var(--shadow-lg);z-index:3}
+.about-badge{position:absolute;top:22px;left:-26px;background:#fff;border-radius:18px;padding:16px 22px;
+  box-shadow:var(--shadow-lg);border:1px solid #eee3cd;display:flex;align-items:center;gap:12px;z-index:3}
+.about-badge strong{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--gold);line-height:1}
+.about-badge span{font-size:.85rem;color:var(--ink);line-height:1.35}
+.about-txt .script{display:block}
+.about-txt h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin:4px 0 18px}
+.about-txt p{margin-bottom:16px}
+.about-list{list-style:none;margin:20px 0 30px;display:grid;gap:10px}
+.about-list li{display:flex;gap:12px;align-items:center;color:var(--ink);font-weight:500}
+.about-list li::before{content:'✦';color:var(--gold)}
+.stats{display:flex;gap:44px;border-top:1px solid #e9dfcd;padding-top:26px}
+.stats strong{display:block;font-family:'Playfair Display',serif;font-size:2rem;color:var(--ink)}
+.stats span{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* ============ SERVICES ============ */
+#services{background:var(--cream2)}
+.tabs{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.tab-btn{padding:12px 34px;border-radius:999px;border:1.5px solid #ddd2bd;background:transparent;color:var(--ink);
+  font-family:'Jost',sans-serif;font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:.3s}
+.tab-btn:hover{border-color:var(--gold);color:var(--gold)}
+.tab-btn.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.service-panel{display:none}
+.service-panel.active{display:block;animation:fadeUp .55s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.banner{position:relative;height:clamp(240px,32vw,360px);border-radius:26px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px;background:linear-gradient(135deg,var(--lav-l),var(--cream2))}
+.banner img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.banner:hover img{transform:scale(1.05)}
+.banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,36,74,.05),rgba(35,36,74,.45))}
+.banner-tag{position:absolute;left:22px;bottom:20px;z-index:2;background:rgba(43,45,85,.78);color:#fff;
+  padding:9px 20px;border-radius:999px;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;backdrop-filter:blur(4px)}
+.s-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:26px}
+.s-card{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:.35s;border:1px solid #f0e8d8}
+.s-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.s-img{height:190px;overflow:hidden;background:linear-gradient(135deg,var(--lav-l),var(--cream2))}
+.s-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.s-card:hover .s-img img{transform:scale(1.08)}
+.s-body{padding:22px 24px 24px}
+.s-body h3{font-size:1.14rem;margin-bottom:8px}
+.s-body p{font-size:.92rem;line-height:1.65}
+.s-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;border-top:1px dashed #eee3cd;padding-top:14px}
+.price{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;color:var(--gold)}
+.price em{font-style:normal;font-size:.85rem;color:var(--camel-d)}
+.dur{font-size:.8rem;letter-spacing:.06em;color:#a49bb5}
+.s-book{font-size:.85rem;font-weight:600;color:var(--plum);letter-spacing:.06em;transition:.3s}
+.s-book:hover{color:var(--gold);letter-spacing:.12em}
+.s-note{text-align:center;margin-top:38px;font-size:.92rem;color:#8b83a0}
+.s-note b{color:var(--gold)}
+
+/* ============ GALLERY ============ */
+#gallery{background:var(--lav-l)}
+.g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.g-item{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:1;box-shadow:var(--shadow);cursor:pointer;background:linear-gradient(135deg,#e4dbee,#f4eee2)}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.g-item:hover img{transform:scale(1.09)}
+.g-item::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(35,36,74,.55));opacity:0;transition:.4s}
+.g-item:hover::after{opacity:1}
+.g-item figcaption{position:absolute;left:16px;bottom:16px;z-index:2;background:rgba(250,246,239,.92);color:var(--ink);
+  padding:8px 18px;border-radius:999px;font-size:.82rem;letter-spacing:.1em;opacity:0;transform:translateY(10px);transition:.4s}
+.g-item:hover figcaption{opacity:1;transform:none}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;z-index:400;background:rgba(28,29,60,.9);display:grid;place-items:center;padding:28px;
+  opacity:0;visibility:hidden;transition:.35s}
+.lightbox.show{opacity:1;visibility:visible}
+.lightbox img{max-width:min(880px,92vw);max-height:78vh;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.5);border:4px solid rgba(255,255,255,.15)}
+.lightbox p{color:var(--gold-l);font-family:'Playfair Display',serif;margin-top:16px;letter-spacing:.1em;text-align:center}
+.lb-close{position:absolute;top:20px;right:26px;background:none;border:0;color:#fff;font-size:2.4rem;cursor:pointer;line-height:1;transition:.3s}
+.lb-close:hover{color:var(--gold);transform:rotate(90deg)}
+
+/* ============ TESTIMONIALS ============ */
+#testimonials{background:var(--ink);background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px}
+#testimonials .sec-head h2{color:#fff}
+.t-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+.t-card{background:var(--cream);border-radius:var(--r);padding:34px 30px;position:relative;transition:.35s;border-bottom:4px solid transparent}
+.t-card:hover{transform:translateY(-8px);border-bottom-color:var(--gold);box-shadow:0 24px 44px rgba(0,0,0,.35)}
+.t-quote{font-family:'Playfair Display',serif;font-size:4rem;line-height:.6;color:var(--gold);height:26px}
+.t-stars{color:var(--gold);letter-spacing:4px;margin:14px 0 10px;font-size:.95rem}
+.t-card p{font-size:.95rem;color:var(--txt)}
+.t-who{display:flex;align-items:center;gap:14px;margin-top:22px}
+.t-ava{position:relative;width:52px;height:52px;border-radius:50%;overflow:hidden;background:var(--lav-l);
+  display:grid;place-items:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--plum);border:2px solid var(--gold)}
+.t-ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.t-who strong{display:block;color:var(--ink);font-family:'Playfair Display',serif}
+.t-who span{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#a49bb5}
+
+/* ============ CONTACT ============ */
+.c-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:start}
+.form-card{background:#fff;border-radius:26px;padding:40px;box-shadow:var(--shadow);border:1px solid #f0e8d8}
+.form-card h3{font-size:1.5rem;margin-bottom:6px}
+.form-card>p{font-size:.92rem;margin-bottom:26px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.f-group{margin-bottom:18px}
+.f-group label{display:block;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink);margin-bottom:7px}
+.f-group input,.f-group select,.f-group textarea{width:100%;padding:13px 16px;border:1.5px solid #e7ddcc;border-radius:14px;
+  font-family:'Jost',sans-serif;font-size:.95rem;color:var(--ink);background:var(--cream);transition:.3s;color-scheme:light}
+.f-group input:focus,.f-group select:focus,.f-group textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,162,75,.16);background:#fff}
+.f-group textarea{resize:vertical;min-height:110px}
+.info-item{display:flex;gap:18px;margin-bottom:26px}
+.info-icon{flex:0 0 48px;height:48px;border-radius:50%;background:var(--lav-l);color:var(--plum);display:grid;place-items:center;border:1.5px solid #ded4f0}
+.info-item h4{font-size:1.02rem;margin-bottom:2px}
+.info-item p{font-size:.93rem}
+.socials{display:flex;gap:12px;margin-top:30px}
+.socials a{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;transition:.3s}
+.socials a:hover{background:var(--gold);color:#fff;transform:translateY(-4px)}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:#cfc9de;text-align:center;padding:44px 24px}
+.f-logo{font-family:'Playfair Display',serif;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;font-size:1.15rem}
+.f-script{font-family:'Great Vibes',cursive;color:var(--gold);font-size:1.3rem;display:block;margin:-2px 0 14px}
+footer small{font-size:.85rem;color:#9d97b8}
+
+/* ============ TOAST / MISC ============ */
+.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,20px);background:var(--ink);color:var(--cream);
+  border:1px solid var(--gold);padding:15px 28px;border-radius:999px;box-shadow:var(--shadow-lg);
+  opacity:0;visibility:hidden;transition:.4s;z-index:300;font-size:.93rem;max-width:90vw;text-align:center}
+.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+#backTop{position:fixed;right:24px;bottom:24px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:#fff;
+  border:0;font-size:1.2rem;cursor:pointer;opacity:0;visibility:hidden;transition:.35s;z-index:150;box-shadow:var(--shadow-lg)}
+#backTop.show{opacity:1;visibility:visible}
+#backTop:hover{background:var(--camel-d);transform:translateY(-4px)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:960px){
+  section{padding:76px 0}
+  .about-grid{grid-template-columns:1fr;gap:64px}
+  .about-badge{left:14px}
+  .about-mini{right:8px;bottom:-30px;width:150px;height:150px}
+  .c-grid{grid-template-columns:1fr;gap:48px}
+  .g-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:920px){
+  .nav-toggle{display:flex}
+  .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--cream);flex-direction:column;
+    padding:26px 24px;gap:18px;box-shadow:0 18px 30px rgba(43,45,85,.12);display:none;border-radius:0 0 22px 22px}
+  .nav.open .nav-links{display:flex}
+  .nav-links a{color:var(--ink)!important}
+  .nav .btn{display:none}
+}
+@media(max-width:560px){
+  .g-grid{grid-template-columns:1fr}
+  .f-row{grid-template-columns:1fr}
+  .form-card{padding:28px 22px}
+  .stats{gap:26px}
+  .about-badge{padding:12px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="logo"><span class="logo-main">Celeste</span><span class="logo-sub">Beauty Lounge</span></a>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn">Book Now</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ====== HERO (real salon interior) ====== -->
+<header class="hero" id="home">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80"
+         alt="Celeste salon interior with styling chairs and mirrors" onerror="fb(this)">
+  </div>
+  <div class="hero-inner">
+    <p class="hero-script">Welcome to</p>
+    <h1 class="hero-title">Celeste</h1>
+    <p class="hero-sub">Beauty Lounge</p>
+    <div class="hero-orn"><span class="line"></span>✦<span class="line"></span></div>
+    <p class="hero-tag">Where elegance meets artistry — indulge in luxurious hair, skin &amp; nail care crafted beautifully for you.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn">Book Appointment</a>
+      <a href="#services" class="btn btn-ghost">Explore Services</a>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+  </div>
+</header>
+
+<main>
+<!-- ====== ABOUT (real stylist at work) ====== -->
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-media reveal">
+      <img class="about-main" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=75"
+           alt="Stylist working on a client's hair at Celeste" onerror="fb(this)">
+      <img class="about-mini" src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=500&q=70"
+           alt="Celeste salon interior detail" onerror="fb(this)">
+      <div class="about-badge"><strong>10+</strong><span>Years of<br>Glow &amp; Grace</span></div>
+    </div>
+    <div class="about-txt reveal" style="--d:.15s">
+      <span class="script">our story</span>
+      <h2>A Sanctuary of <em>Beauty</em> &amp; Calm</h2>
+      <p>Celeste Beauty Lounge began in 2015 with a simple dream — to create a space where every woman feels celebrated. From our plush leather styling chairs and botanical ceilings to the lavender tea we serve at your arrival, every detail is designed for your comfort.</p>
+      <p>Our certified stylists and aestheticians bring over a decade of artistry in hair, skin and nail care — blending premium products, gentle techniques and a touch of magic to every appointment.</p>
+      <ul class="about-list">
+        <li>Certified &amp; award-winning beauty artists</li>
+        <li>Premium, cruelty-free products only</li>
+        <li>Hygiene-first, spa-serene private suites</li>
+      </ul>
+      <div class="stats">
+        <div><strong>10+</strong><span>Years</span></div>
+        <div><strong>12k+</strong><span>Happy Clients</span></div>
+        <div><strong>15</strong><span>Expert Artists</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SERVICES ====== -->
+<section id="services">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="script">pamper yourself</span>
+      <h2>Our <em>Signature</em> Services</h2>
+      <div class="orn"><span class="line"></span>✦<span class="line"></span></div>
+      <p class="sec-sub">Three curated menus of indulgence — pick a category and let us spoil you.</p>
+    </div>
+
+    <div class="tabs reveal" role="tablist">
+      <button class="tab-btn active" data-panel="panel-hair">Hair</button>
+      <button class="tab-btn" data-panel="panel-skin">Skin &amp; Facial</button>
+      <button class="tab-btn" data-panel="panel-nails">Nails</button>
+    </div>
+
+    <!-- HAIR -->
+    <div class="service-panel active" id="panel-hair">
+      <div class="banner reveal in">
+        <img src="https://images.unsplash.com/photo-1560869713-7d0954650da1?auto=format&fit=crop&w=1600&q=75"
+             alt="Hair color being applied to a client at the salon" onerror="fb(this)">
+        <span class="banner-tag">✦ Signature Hair Studio</span>
+      </div>
+      <div class="s-grid">
+        <div class="s-card reveal"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=640&q=70"
+               alt="Stylist giving a blowout and styling" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Haircut &amp; Styling</h3><p>Precision cuts, blowouts and styling tailored to your face shape and lifestyle.</p>
+          <div class="s-foot"><span class="price">$45<em>+</em> <span class="dur">· 45 min</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+        <div class="s-card reveal" style="--d:.08s"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=640&q=70"
+               alt="Woman with beautifully colored wavy hair" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Hair Coloring</h3><p>Global colour, balayage and highlights using ammonia-free professional dyes.</p>
+          <div class="s-foot"><span class="price">$85<em>+</em> <span class="dur">· 2 hrs</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+        <div class="s-card reveal" style="--d:.16s"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=640&q=70"
+               alt="Relaxing spa treatment scene" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Hair Spa / Deep Conditioning</h3><p>A relaxing scalp massage and moisture-rich mask for silky, revived hair.</p>
+          <div class="s-foot"><span class="price">$60 <span class="dur">· 60 min</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+        <div class="s-card reveal" style="--d:.24s"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=640&q=70"
+               alt="Smooth silky hair being finished by a stylist" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Keratin Treatment</h3><p>Smoothing keratin therapy that tames frizz and adds mirror-like shine for months.</p>
+          <div class="s-foot"><span class="price">$150<em>+</em> <span class="dur">· 2.5 hrs</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- SKIN & FACIAL -->
+    <div class="service-panel" id="panel-skin">
+      <div class="banner">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=75"
+             alt="Client receiving a relaxing facial treatment" onerror="fb(this)">
+        <span class="banner-tag">✦ Glow &amp; Skin Bar</span>
+      </div>
+      <div class="s-grid">
+        <div class="s-card reveal"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=640&q=70"
+               alt="Woman enjoying a classic facial mask" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Classic Facial</h3><p>Deep cleanse, gentle exfoliation and a nourishing mask for a natural glow.</p>
+          <div class="s-foot"><span class="price">$55 <span class="dur">· 60 min</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+        <div class="s-card reveal" style="--d:.08s"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=640&q=70"
+               alt="Anti-aging facial massage treatment" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Anti-Aging Facial</h3><p>Firming massage, collagen serum and lift mask to smooth fine lines.</p>
+          <div class="s-foot"><span class="price">$95 <span class="dur">· 75 min</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+        <div class="s-card reveal" style="--d:.16s"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1596178060810-72660ee8d2c0?auto=format&fit=crop&w=640&q=70"
+               alt="Refreshing skin cleanup treatment" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Cleanup</h3><p>A quick refresh — cleanse, scrub and hydrate for instantly brighter skin.</p>
+          <div class="s-foot"><span class="price">$35 <span class="dur">· 30 min</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+        <div class="s-card reveal" style="--d:.24s"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=640&q=70"
+               alt="Precise eyebrow shaping and eye area grooming" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Eyebrow Threading</h3><p>Perfectly shaped brows with precise, gentle threading by our experts.</p>
+          <div class="s-foot"><span class="price">$12 <span class="dur">· 15 min</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- NAILS -->
+    <div class="service-panel" id="panel-nails">
+      <div class="banner">
+        <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=1600&q=75"
+             alt="Close-up of detailed nail art on manicured hands" onerror="fb(this)">
+        <span class="banner-tag">✦ Nail Atelier</span>
+      </div>
+      <div class="s-grid">
+        <div class="s-card reveal"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=640&q=70"
+               alt="Nail polish being applied during a manicure" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Manicure</h3><p>Shaping, cuticle care, buffing and polish with a soothing hand massage.</p>
+          <div class="s-foot"><span class="price">$30 <span class="dur">· 40 min</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+        <div class="s-card reveal" style="--d:.08s"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=640&q=70"
+               alt="Pedicure polish and foot care" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Pedicure</h3><p>Warm soak, exfoliation and polish, finished with a relaxing foot massage.</p>
+          <div class="s-foot"><span class="price">$40 <span class="dur">· 50 min</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+        <div class="s-card reveal" style="--d:.16s"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=640&q=70"
+               alt="Long sculpted gel nail extensions" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Nail Extensions</h3><p>Gel or acrylic extensions sculpted to your ideal length and shape.</p>
+          <div class="s-foot"><span class="price">$70<em>+</em> <span class="dur">· 90 min</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+        <div class="s-card reveal" style="--d:.24s"><div class="s-img">
+          <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=640&q=70"
+               alt="Colorful nail art design in progress" loading="lazy" onerror="fb(this)">
+        </div><div class="s-body">
+          <h3>Nail Art</h3><p>Hand-painted designs, chrome, glitter and French tips — customised for you.</p>
+          <div class="s-foot"><span class="price">$25<em>+</em> <span class="dur">· 30 min</span></span><a href="#contact" class="s-book">Book →</a></div>
+        </div></div>
+      </div>
+    </div>
+
+    <p class="s-note reveal">✦ Every service begins with a <b>complimentary consultation</b> &amp; a warm cup of lavender tea.</p>
+  </div>
+</section>
+
+<!-- ====== GALLERY (real photos) ====== -->
+<section id="gallery">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="script">moments of glow</span>
+      <h2>The <em>Celeste</em> Gallery</h2>
+      <div class="orn"><span class="line"></span>✦<span class="line"></span></div>
+      <p class="sec-sub">Tap any photo to view it up close ✦</p>
+    </div>
+    <div class="g-grid">
+      <figure class="g-item reveal" data-cap="The Styling Suite">
+        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800&q=70"
+             alt="Elegant salon styling suite" loading="lazy" onerror="fb(this)"
+             data-full="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1400&q=80">
+        <figcaption>The Styling Suite</figcaption>
+      </figure>
+      <figure class="g-item reveal" style="--d:.08s" data-cap="Salon Chairs">
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=70"
+             alt="Row of salon chairs and mirrors" loading="lazy" onerror="fb(this)"
+             data-full="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1400&q=80">
+        <figcaption>Salon Chairs</figcaption>
+      </figure>
+      <figure class="g-item reveal" style="--d:.16s" data-cap="Color &amp; Gloss Result">
+        <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=800&q=70"
+             alt="Finished glossy colored hair result" loading="lazy" onerror="fb(this)"
+             data-full="https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=1400&q=80">
+        <figcaption>Color &amp; Gloss Result</figcaption>
+      </figure>
+      <figure class="g-item reveal" style="--d:.08s" data-cap="Bridal Glam">
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&q=70"
+             alt="Makeup application for a glam look" loading="lazy" onerror="fb(this)"
+             data-full="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1400&q=80">
+        <figcaption>Bridal Glam</figcaption>
+      </figure>
+      <figure class="g-item reveal" style="--d:.16s" data-cap="Spa Rituals">
+        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=800&q=70"
+             alt="Relaxing spa therapy moment" loading="lazy" onerror="fb(this)"
+             data-full="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1400&q=80">
+        <figcaption>Spa Rituals</figcaption>
+      </figure>
+      <figure class="g-item reveal" style="--d:.24s" data-cap="Polish Bar">
+        <img src="https://images.unsplash.com/photo-1599948128020-9a44505b0d1b?auto=format&fit=crop&w=800&q=70"
+             alt="Nail polish shades at the polish bar" loading="lazy" onerror="fb(this)"
+             data-full="https://images.unsplash.com/photo-1599948128020-9a44505b0d1b?auto=format&fit=crop&w=1400&q=80">
+        <figcaption>Polish Bar</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ====== TESTIMONIALS (real client photos) ====== -->
+<section id="testimonials">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="script">love notes</span>
+      <h2>What Our <em style="color:var(--gold)">Girlies</em> Say</h2>
+      <div class="orn"><span class="line"></span>✦<span class="line"></span></div>
+    </div>
+    <div class="t-grid">
+      <div class="t-card reveal">
+        <div class="t-quote">“</div>
+        <div class="t-stars">★★★★★</div>
+        <p>Celeste is my happy place! The staff is so warm and my hair has never looked better. The ambience alone feels like a spa day.</p>
+        <div class="t-who">
+          <div class="t-ava">A<img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Aishwarya Sharma" loading="lazy" onerror="this.style.display='none'"></div>
+          <div><strong>Aishwarya Sharma</strong><span>Regular Client</span></div>
+        </div>
+      </div>
+      <div class="t-card reveal" style="--d:.1s">
+        <div class="t-quote">“</div>
+        <div class="t-stars">★★★★★</div>
+        <p>Got the anti-aging facial and nail art done — obsessed! Every detail, from the lavender tea to the results, is pure luxury.</p>
+        <div class="t-who">
+          <div class="t-ava">P<img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya Mehta" loading="lazy" onerror="this.style.display='none'"></div>
+          <div><strong>Priya Mehta</strong><span>Skin &amp; Nails</span></div>
+        </div>
+      </div>
+      <div class="t-card reveal" style="--d:.2s">
+        <div class="t-quote">“</div>
+        <div class="t-stars">★★★★★</div>
+        <p>Booked keratin before my sister's wedding and my hair stayed silky for months. Worth every penny — highly recommend!</p>
+        <div class="t-who">
+          <div class="t-ava">S<img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Sara Khan" loading="lazy" onerror="this.style.display='none'"></div>
+          <div><strong>Sara Khan</strong><span>Hair Client</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT / BOOKING ====== -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="script">reserve your glow</span>
+      <h2>Book an <em>Appointment</em></h2>
+      <div class="orn"><span class="line"></span>✦<span class="line"></span></div>
+      <p class="sec-sub">Tell us what you're dreaming of — we'll take care of the rest.</p>
+    </div>
+    <div class="c-grid">
+      <div class="form-card reveal">
+        <h3>Appointment Form</h3>
+        <p>Fill in your details and we'll confirm your slot within a few hours.</p>
+        <form id="bookingForm">
+          <div class="f-row">
+            <div class="f-group"><label for="cname">Name</label><input type="text" id="cname" placeholder="Your lovely name" required></div>
+            <div class="f-group"><label for="cphone">Phone</label><input type="tel" id="cphone" placeholder="+91 98765 43210" pattern="[0-9+\- ]{7,15}" required></div>
+          </div>
+          <div class="f-row">
+            <div class="f-group"><label for="cservice">Preferred Service</label>
+              <select id="cservice" required>
+                <option value="" disabled selected>Choose a service…</option>
+                <optgroup label="Hair">
+                  <option>Haircut &amp; Styling</option><option>Hair Coloring</option><option>Hair Spa / Deep Conditioning</option><option>Keratin Treatment</option>
+                </optgroup>
+                <optgroup label="Skin &amp; Facial">
+                  <option>Classic Facial</option><option>Anti-Aging Facial</option><option>Cleanup</option><option>Eyebrow Threading</option>
+                </optgroup>
+                <optgroup label="Nails">
+                  <option>Manicure</option><option>Pedicure</option><option>Nail Extensions</option><option>Nail Art</option>
+                </optgroup>
+                <option>Not sure yet — surprise me!</option>
+              </select>
+            </div>
+            <div class="f-group"><label for="cdate">Preferred Date</label><input type="date" id="cdate" required></div>
+          </div>
+          <div class="f-group"><label for="cmsg">Message</label><textarea id="cmsg" placeholder="Anything we should know? Occasions, allergies, inspiration pics…"></textarea></div>
+          <button type="submit" class="btn">Request Appointment ✦</button>
+        </form>
+      </div>
+      <div class="reveal" style="--d:.15s">
+        <div class="info-item">
+          <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 5 5 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg></div>
+          <div><h4>Visit Us</h4><p>21 Stardust Avenue, Rosewood District,<br>Mumbai 400001, India</p></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.7 3.9 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></div>
+          <div><h4>Call / WhatsApp</h4><p>+91 98765 43210<br>hello@celestebeauty.com</p></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><h4>Opening Hours</h4><p>Mon – Sat · 9:00 AM – 8:00 PM<br>Sunday · 10:00 AM – 6:00 PM</p></div>
+        </div>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.4" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M14 8h3V5h-3c-2.2 0-4 1.8-4 4v2H7v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg></a>
+          <a href="#" aria-label="X (Twitter)"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M4 4l6.7 8.8L4.4 20h2.5l4.9-5.6L16 20h4l-7-9.2L19.4 4h-2.5l-4.4 5L8 4H4z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="3.5" fill="currentColor"/><path d="M10.5 9.5v5l4.5-2.5z" fill="#faf6ef"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="f-logo">Celeste</div>
+  <span class="f-script">Beauty Lounge</span>
+  <small>© <span id="year"></span> Celeste Beauty Lounge — All Rights Reserved. Crafted with ✦ &amp; love.</small>
+</footer>
+
+<!-- Lightbox for gallery -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+  <div><img id="lbImg" src="" alt="Gallery photo enlarged"><p id="lbCap"></p></div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<button id="backTop" aria-label="Back to top">↑</button>
+
+<script>
+/* ---------- Sticky nav + back-to-top ---------- */
+const nav = document.getElementById('nav');
+const backTop = document.getElementById('backTop');
+const onScroll = () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+  backTop.classList.toggle('show', window.scrollY > 600);
+};
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* ---------- Mobile menu ---------- */
+const navToggle = document.getElementById('navToggle');
+navToggle.addEventListener('click', () => nav.classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a =>
+  a.addEventListener('click', () => nav.classList.remove('open'))
+);
+
+/* ---------- Service tabs ---------- */
+const tabBtns = document.querySelectorAll('.tab-btn');
+const panels = document.querySelectorAll('.service-panel');
+tabBtns.forEach(btn => btn.addEventListener('click', () => {
+  tabBtns.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  panels.forEach(p => p.classList.remove('active'));
+  document.getElementById(btn.dataset.panel).classList.add('active');
+}));
+
+/* ---------- Reveal on scroll ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- Active nav link highlight ---------- */
+const linkMap = {};
+document.querySelectorAll('.nav-links a').forEach(a => linkMap[a.getAttribute('href').slice(1)] = a);
+const secIO = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      Object.values(linkMap).forEach(a => a.classList.remove('active'));
+      linkMap[e.target.id]?.classList.add('active');
+    }
+  });
+}, {rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section[id],header[id]').forEach(s => secIO.observe(s));
+
+/* ---------- Gallery lightbox ---------- */
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCap = document.getElementById('lbCap');
+document.querySelectorAll('.g-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const img = item.querySelector('img');
+    lbImg.src = img.dataset.full || img.src;
+    lbCap.innerHTML = item.dataset.cap || item.querySelector('figcaption').textContent;
+    lightbox.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  });
+});
+function closeLB(){
+  lightbox.classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.getElementById('lbClose').addEventListener('click', closeLB);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+
+/* ---------- Toast ---------- */
+const toast = document.getElementById('toast');
+let toastTimer;
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 4200);
+}
+
+/* ---------- Booking form ---------- */
+const form = document.getElementById('bookingForm');
+document.getElementById('cdate').min = new Date().toISOString().split('T')[0];
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+  const name = document.getElementById('cname').value.trim();
+  showToast(`Thank you, ${name}! ✦ Your appointment request is received — we'll call you shortly to confirm.`);
+  form.reset();
+});
+
+/* ---------- Footer year ---------- */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
